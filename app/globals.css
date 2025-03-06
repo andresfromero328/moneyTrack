@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #d4aa7d;
+  --color-secondary: #272727;
+  --color-special: #efd09e;
+  --color-extra: #fdf9f2;
+  --color-onSuccess: #859f3d;
+  --color-onFailure: #d2665a;
+  --shadow-onRest: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --shadow-onHover: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+  body {
+    @apply bg-extra font-[family-name:var(--font-funnel_sans)];
+  }
+  h1 {
+    @apply text-2xl font-bold text-primary;
+  }
+  h2 {
+    @apply text-lg font-extrabold text-primary;
+  }
+  p {
+    @apply text-base text-secondary;
+  }
+  small {
+    @apply text-sm font-bold text-secondary;
+  }
+  input {
+    @apply bg-primary p-2 rounded-sm outline-none border-none hover:bg-special hover:shadow-onHover active:shadow-onHover active:bg-special focus:shadow-onHover focus:bg-special text-secondary placeholder:text-secondary/50 transition-all duration-300 ease-in-out;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-primary;
+  }
+  ::-webkit-scrollbar {
+    @apply w-[.5rem];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .content {
+    @apply max-w-7xl mx-auto p-5 flex-1 flex flex-col gap-5;
+  }
+  .navbar {
+    @apply sticky top-0 z-30;
+  }
+  .button {
+    @apply flex items-center gap-2 p-2 rounded-sm bg-primary hover:bg-special hover:shadow-onHover transition-all duration-300 ease-in-out;
+  }
+  .icon {
+    @apply text-secondary text-base;
+  }
+  .anim-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  .modal-nav {
+    @apply relative flex flex-col items-center justify-center w-full h-full;
+  }
+  .backdrop {
+    @apply fixed top-0 right-0 w-full h-full bg-extra/50 backdrop-blur-[15px] z-40 flex items-center justify-center p-4 overflow-hidden;
+  }
+  .today-bill-modal {
+    @apply relative w-full min-w-[390px] min-h-[830px] md:w-fit h-full md:h-1/2 overflow-auto shadow-onHover rounded-md bg-extra;
+  }
+  .user-icon-resize {
+    @apply w-[55px] h-[55px] lg:w-[65px] lg:h-[65px];
+  }
+  .grid-calendar-report {
+    @apply grid grid-cols-2 grid-rows-2 gap-2;
+  }
+
+  .grid-calendar-report > *:nth-child(1) {
+    @apply col-span-2;
+  }
+
+  .flex-calendar-report {
+    @apply flex flex-col gap-2;
+  }
+  .react-datepicker {
+    @apply shadow-onHover left-10 border-none;
+  }
+  .react-datepicker__month-container {
+    @apply rounded-t-md;
+  }
+  .react-datepicker
+    .react-datepicker__month-container
+    .react-datepicker__header {
+    @apply font-[family-name:var(--font-oswald)] text-extra;
+  }
+  .react-datepicker__day,
+  .react-datepicker__month-text {
+    @apply font-[family-name:var(--font-oswald)] text-extra font-semibold;
+  }
+  .react-datepicker
+    .react-datepicker__month-container
+    .react-datepicker__month
+    .react-datepicker__month-wrapper
+    .react-datepicker__month-text--selected {
+    @apply text-extra bg-primary/30 hover:bg-primary/50;
+  }
+}
+
+@layer utilities {
 }
