@@ -1,9 +1,14 @@
 import React from "react";
+import dynamic from "next/dynamic";
+
+const Spending = dynamic(() => import("@/components/dashboardComps/Spending"), {
+  ssr: false,
+});
 
 import Accounts from "@/components/dashboardComps/Accounts";
 import Budgets from "@/components/dashboardComps/Budgets";
 import Subscriptions from "@/components/dashboardComps/Subscriptions";
-import Spending from "@/components/dashboardComps/Spending";
+// import Spending from "@/components/dashboardComps/Spending";
 import ContentLanding from "@/components/animations/ContentLanding";
 
 const COMPS = [
