@@ -1,6 +1,6 @@
 import React from "react";
 
-// import Navbar from "@/components/global/header/Navbar";
+import Navbar from "@/components/global/header/Navbar";
 
 interface Props {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface Props {
 const AuthenticatedLayout = async ({ children }: Props) => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
     </>
   );
