@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -28,133 +28,66 @@ ChartJS.register(
 );
 
 const Spending = () => {
-  const [chartData, setChartData] = useState<ChartData<"line"> | null>(null);
-  const [chartOptions, setChartOptions] = useState<ChartOptions<"line"> | null>(
-    null
-  );
+  const data: ChartData<"line"> = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "Spending",
+        data: [300, 400, 500, 700, 600, 800],
+        fill: true,
+        backgroundColor: "rgba(237, 177, 95, .2)",
+        borderColor: "rgba(237, 177, 95, 1)",
+        pointRadius: 5,
+        tension: 0.4,
+      },
+    ],
+  };
 
-  useEffect(() => {
-    setChartData({
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-      datasets: [
-        {
-          label: "Spending",
-          data: [300, 400, 500, 700, 600, 800],
-          fill: true,
-          backgroundColor: "rgba(237, 177, 95, .2)",
-          borderColor: "rgba(237, 177, 95, 1)",
-          pointRadius: 5,
-          tension: 0.4,
+  const options: ChartOptions<"line"> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        titleFont: {
+          size: 14,
+          family: "Funnel Sans, sans-serif",
         },
-      ],
-    });
-    setChartOptions({
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
+        bodyFont: {
+          size: 14,
+          family: "Funnel Sans, sans-serif",
+        },
+      },
+    },
+    scales: {
+      x: {
+        grid: {
           display: false,
         },
-        tooltip: {
-          titleFont: {
-            size: 14,
-            family: "Funnel Sans, sans-serif",
-          },
-          bodyFont: {
+        ticks: {
+          color: "#272727",
+          font: {
             size: 14,
             family: "Funnel Sans, sans-serif",
           },
         },
       },
-      scales: {
-        x: {
-          grid: {
-            display: false,
-          },
-          ticks: {
-            color: "#272727",
-            font: {
-              size: 14,
-              family: "Funnel Sans, sans-serif",
-            },
-          },
+      y: {
+        grid: {
+          display: false,
         },
-        y: {
-          grid: {
-            display: false,
-          },
-          ticks: {
-            color: "#272727",
-            font: {
-              size: 14,
-              family: "Funnel Sans, sans-serif",
-            },
+        ticks: {
+          color: "#272727",
+          font: {
+            size: 14,
+            family: "Funnel Sans, sans-serif",
           },
         },
       },
-    });
-  }, []);
-
-  // const data: ChartData<"line"> = {
-  //   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-  //   datasets: [
-  //     {
-  //       label: "Spending",
-  //       data: [300, 400, 500, 700, 600, 800],
-  //       fill: true,
-  //       backgroundColor: "rgba(237, 177, 95, .2)",
-  //       borderColor: "rgba(237, 177, 95, 1)",
-  //       pointRadius: 5,
-  //       tension: 0.4,
-  //     },
-  //   ],
-  // };
-
-  // const options: ChartOptions<"line"> = {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   plugins: {
-  //     legend: {
-  //       display: false,
-  //     },
-  //     tooltip: {
-  //       titleFont: {
-  //         size: 14,
-  //         family: "Funnel Sans, sans-serif",
-  //       },
-  //       bodyFont: {
-  //         size: 14,
-  //         family: "Funnel Sans, sans-serif",
-  //       },
-  //     },
-  //   },
-  //   scales: {
-  //     x: {
-  //       grid: {
-  //         display: false,
-  //       },
-  //       ticks: {
-  //         color: "#272727",
-  //         font: {
-  //           size: 14,
-  //           family: "Funnel Sans, sans-serif",
-  //         },
-  //       },
-  //     },
-  //     y: {
-  //       grid: {
-  //         display: false,
-  //       },
-  //       ticks: {
-  //         color: "#272727",
-  //         font: {
-  //           size: 14,
-  //           family: "Funnel Sans, sans-serif",
-  //         },
-  //       },
-  //     },
-  //   },
-  // };
+    },
+  };
 
   return (
     <div
@@ -165,14 +98,7 @@ const Spending = () => {
         Spending
       </h2>
       <div className="w-full h-60 p-2">
-        {chartData && chartOptions && (
-          <Line
-            id="speding-line-chart"
-            data={chartData!}
-            options={chartOptions!}
-          />
-        )}
-        {/* <Line id="speding-line-chart" data={chartData!} options={chartOptions!} /> */}
+        <Line id="speding-line-chart" data={data} options={options} />
       </div>
     </div>
   );

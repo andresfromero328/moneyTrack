@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
-    "chartjs": "^0.3.24",
+    "chart.js": "^4.4.8",
     "framer-motion": "^12.4.10",
     "mongoose": "^8.12.1",
     "next": "15.2.1",
