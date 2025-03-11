@@ -12,7 +12,7 @@ import {
   Tooltip,
   Legend,
   Filler,
-  // ChartOptions,
+  ChartOptions,
   ChartData,
 } from "chart.js";
 
@@ -28,23 +28,68 @@ ChartJS.register(
 );
 
 const Spending = () => {
-  const [chartData, setChartData] = useState<ChartData<"line"> | null>(null);
+  const [chartData, setChartData] = useState<{data: ChartData<"line">, options: ChartOptions<"line">} | null>(null);
 
   useEffect(() => {
     // Simulate fetching data or setting the chart data
-    const data = {
+    const data:ChartData<"line"> = {
       labels: ["Red", "Blue", "Yellow"],
       datasets: [
         {
           data: [300, 50, 100],
           backgroundColor: "rgba(237, 177, 95, .2)",
-          hoverOffset: 4,
         },
       ],
     };
 
+    const options: ChartOptions<"line"> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        titleFont: {
+          size: 14,
+          family: "Funnel Sans, sans-serif",
+        },
+        bodyFont: {
+          size: 14,
+          family: "Funnel Sans, sans-serif",
+        },
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: "#272727",
+          font: {
+            size: 14,
+            family: "Funnel Sans, sans-serif",
+          },
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: "#272727",
+          font: {
+            size: 14,
+            family: "Funnel Sans, sans-serif",
+          },
+        },
+      },
+    },
+  };
+
     // Set the chart data when the component mounts
-    setChartData(data);
+    setChartData({data, options});
   }, []);
 
   // const data: ChartData<"line"> = {
@@ -117,7 +162,7 @@ const Spending = () => {
         Spending
       </h2>
       <div className="w-full h-60 p-2">
-        {chartData && <Line id="speding-line-chart" data={chartData} />}
+        {chartData && <Line id="speding-line-chart" data={chartData.data} options={chartData.options} />}
       </div>
     </div>
   );
