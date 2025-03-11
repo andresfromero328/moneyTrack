@@ -33,12 +33,13 @@ const Spending = () => {
   useEffect(() => {
     // Simulate fetching data or setting the chart data
     const data:ChartData<"line"> = {
-      labels: ["Red", "Blue", "Yellow"],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
       datasets: [
         {
           data: [300, 400, 500, 700, 600, 800],
           backgroundColor: "rgba(237, 177, 95, .2)",
           borderColor: "rgba(237, 177, 95, 1)",
+          pointRadius: 5,
           fill: true,
         },
       ],
