@@ -1,6 +1,10 @@
 "use client";
 
-import { Doughnut } from "react-chartjs-2";
+import dynamic from "next/dynamic";
+// import { Doughnut } from "react-chartjs-2";
+const Doughnut = dynamic(() => import("react-chartjs-2").then((mod) => mod.Doughnut), {
+  ssr: false,
+});
 import {
   Chart as ChartJS,
   ArcElement,
@@ -51,14 +55,12 @@ const BudgetRadialChart = () => {
 
   return (
     <div className="relative w-44 h-44 flex items-center justify-center">
-      {data && options && (
-        <Doughnut
-          id="budget-radial-chart"
-          data={data}
-          options={options}
-          className="z-10"
-        />
-      )}
+      <Doughnut
+        id="budget-radial-chart"
+        data={data}
+        options={options}
+        className="z-10"
+      />
       <div
         id="budget-info-summary"
         className="absolute text-white text-xl font-bold"
