@@ -43,7 +43,7 @@ const Spending = () => {
           backgroundColor: "rgba(237, 177, 95, .2)",
           borderColor: "rgba(237, 177, 95, 1)",
           pointRadius: 5,
-          tension: 0.4,
+          // tension: 0.4,
           fill: true,
         },
       ],
