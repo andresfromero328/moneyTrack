@@ -8,6 +8,7 @@ import { IoFastFood } from "react-icons/io5";
 const BudgetRadialChart = dynamic(
   () => import("./budgetComps/BudgetRadialChart"),
   {
+    loading: () => <p>Loading...</p>,
     ssr: false,
   }
 );
