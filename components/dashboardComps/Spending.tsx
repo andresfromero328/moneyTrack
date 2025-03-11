@@ -39,6 +39,7 @@ const Spending = () => {
           data: [300, 400, 500, 700, 600, 800],
           backgroundColor: "rgba(237, 177, 95, .2)",
           borderColor: "rgba(237, 177, 95, 1)",
+          fill: true,
         },
       ],
     };
