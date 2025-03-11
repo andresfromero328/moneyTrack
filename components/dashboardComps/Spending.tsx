@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,7 +12,7 @@ import {
   Tooltip,
   Legend,
   Filler,
-  ChartOptions,
+  // ChartOptions,
   ChartData,
 } from "chart.js";
 
@@ -28,66 +28,85 @@ ChartJS.register(
 );
 
 const Spending = () => {
-  const data: ChartData<"line"> = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    datasets: [
-      {
-        label: "Spending",
-        data: [300, 400, 500, 700, 600, 800],
-        fill: true,
-        backgroundColor: "rgba(237, 177, 95, .2)",
-        borderColor: "rgba(237, 177, 95, 1)",
-        pointRadius: 5,
-        tension: 0.4,
-      },
-    ],
-  };
+  const [chartData, setChartData] = useState<ChartData<"line"> | null>(null);
 
-  const options: ChartOptions<"line"> = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        titleFont: {
-          size: 14,
-          family: "Funnel Sans, sans-serif",
+  useEffect(() => {
+    // Simulate fetching data or setting the chart data
+    const data = {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [
+        {
+          data: [300, 50, 100],
+          backgroundColor: ["red", "blue", "yellow"],
+          hoverOffset: 4,
         },
-        bodyFont: {
-          size: 14,
-          family: "Funnel Sans, sans-serif",
-        },
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          color: "#272727",
-          font: {
-            size: 14,
-            family: "Funnel Sans, sans-serif",
-          },
-        },
-      },
-      y: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          color: "#272727",
-          font: {
-            size: 14,
-            family: "Funnel Sans, sans-serif",
-          },
-        },
-      },
-    },
-  };
+      ],
+    };
+
+    // Set the chart data when the component mounts
+    setChartData(data);
+  }, []);
+
+  // const data: ChartData<"line"> = {
+  //   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+  //   datasets: [
+  //     {
+  //       label: "Spending",
+  //       data: [300, 400, 500, 700, 600, 800],
+  //       fill: true,
+  //       backgroundColor: "rgba(237, 177, 95, .2)",
+  //       borderColor: "rgba(237, 177, 95, 1)",
+  //       pointRadius: 5,
+  //       tension: 0.4,
+  //     },
+  //   ],
+  // };
+
+  // const options: ChartOptions<"line"> = {
+  //   responsive: true,
+  //   maintainAspectRatio: false,
+  //   plugins: {
+  //     legend: {
+  //       display: false,
+  //     },
+  //     tooltip: {
+  //       titleFont: {
+  //         size: 14,
+  //         family: "Funnel Sans, sans-serif",
+  //       },
+  //       bodyFont: {
+  //         size: 14,
+  //         family: "Funnel Sans, sans-serif",
+  //       },
+  //     },
+  //   },
+  //   scales: {
+  //     x: {
+  //       grid: {
+  //         display: false,
+  //       },
+  //       ticks: {
+  //         color: "#272727",
+  //         font: {
+  //           size: 14,
+  //           family: "Funnel Sans, sans-serif",
+  //         },
+  //       },
+  //     },
+  //     y: {
+  //       grid: {
+  //         display: false,
+  //       },
+  //       ticks: {
+  //         color: "#272727",
+  //         font: {
+  //           size: 14,
+  //           family: "Funnel Sans, sans-serif",
+  //         },
+  //       },
+  //     },
+  //   },
+  // };
 
   return (
     <div
@@ -98,7 +117,7 @@ const Spending = () => {
         Spending
       </h2>
       <div className="w-full h-60 p-2">
-        <Line id="speding-line-chart" data={data} options={options} />
+        {chartData && <Line id="speding-line-chart" data={chartData} />}
       </div>
     </div>
   );

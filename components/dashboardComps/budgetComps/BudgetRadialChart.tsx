@@ -1,10 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-// import { Doughnut } from "react-chartjs-2";
-const Doughnut = dynamic(() => import("react-chartjs-2").then((mod) => mod.Doughnut), {
-  ssr: false,
-});
+import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   ArcElement,
