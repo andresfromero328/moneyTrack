@@ -8,7 +8,15 @@ import useScreenWidth from "@/hooks/useScreenWidth";
 import { redirect } from "next/navigation";
 import ContentLanding from "@/components/animations/ContentLanding";
 
-const Navbar = () => {
+interface Props {
+  user: {
+    name: string,
+    email: string,
+    image: string | null
+  }
+}
+
+const Navbar = ({user}: Props) => {
   const [show, setShow] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const width = useScreenWidth();
@@ -53,7 +61,7 @@ const Navbar = () => {
           className="relative flex items-center gap-2"
         >
           <small className="absolute right-20 whitespace-nowrap">
-            Hello Andres
+            Hello {user.name}
           </small>
           <div
             onClick={handleSidebar}
