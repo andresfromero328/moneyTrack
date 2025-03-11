@@ -37,7 +37,7 @@ const Spending = () => {
       datasets: [
         {
           data: [300, 50, 100],
-          backgroundColor: ["red", "blue", "yellow"],
+          backgroundColor: "rgba(237, 177, 95, .2)",
           hoverOffset: 4,
         },
       ],
