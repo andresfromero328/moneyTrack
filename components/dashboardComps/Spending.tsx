@@ -28,68 +28,76 @@ ChartJS.register(
 );
 
 const Spending = () => {
-  const [chartData, setChartData] = useState<{data: ChartData<"line">, options: ChartOptions<"line">} | null>(null);
+  const [chartData, setChartData] = useState<{
+    data: ChartData<"line">;
+    options: ChartOptions<"line">;
+  } | null>(null);
 
   useEffect(() => {
     // Simulate fetching data or setting the chart data
-    const data:ChartData<"line"> = {
-      labels: ["Red", "Blue", "Yellow"],
+    const data: ChartData<"line"> = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
       datasets: [
         {
-          data: [300, 50, 100],
+          label: "Spending",
+          data: [300, 400, 500, 700, 600, 800],
+          fill: true,
           backgroundColor: "rgba(237, 177, 95, .2)",
+          borderColor: "rgba(237, 177, 95, 1)",
+          pointRadius: 5,
+          tension: 0.4,
         },
       ],
     };
 
     const options: ChartOptions<"line"> = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        titleFont: {
-          size: 14,
-          family: "Funnel Sans, sans-serif",
-        },
-        bodyFont: {
-          size: 14,
-          family: "Funnel Sans, sans-serif",
-        },
-      },
-    },
-    scales: {
-      x: {
-        grid: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
           display: false,
         },
-        ticks: {
-          color: "#272727",
-          font: {
+        tooltip: {
+          titleFont: {
+            size: 14,
+            family: "Funnel Sans, sans-serif",
+          },
+          bodyFont: {
             size: 14,
             family: "Funnel Sans, sans-serif",
           },
         },
       },
-      y: {
-        grid: {
-          display: false,
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            color: "#272727",
+            font: {
+              size: 14,
+              family: "Funnel Sans, sans-serif",
+            },
+          },
         },
-        ticks: {
-          color: "#272727",
-          font: {
-            size: 14,
-            family: "Funnel Sans, sans-serif",
+        y: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            color: "#272727",
+            font: {
+              size: 14,
+              family: "Funnel Sans, sans-serif",
+            },
           },
         },
       },
-    },
-  };
+    };
 
     // Set the chart data when the component mounts
-    setChartData({data, options});
+    setChartData({ data, options });
   }, []);
 
   // const data: ChartData<"line"> = {
@@ -162,7 +170,13 @@ const Spending = () => {
         Spending
       </h2>
       <div className="w-full h-60 p-2">
-        {chartData && <Line id="speding-line-chart" data={chartData.data} options={chartData.options} />}
+        {chartData && (
+          <Line
+            id="speding-line-chart"
+            data={chartData.data}
+            options={chartData.options}
+          />
+        )}
       </div>
     </div>
   );
