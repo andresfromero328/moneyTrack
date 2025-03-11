@@ -51,12 +51,14 @@ const BudgetRadialChart = () => {
 
   return (
     <div className="relative w-44 h-44 flex items-center justify-center">
-      <Doughnut
-        id="budget-radial-chart"
-        data={data}
-        options={options}
-        className="z-10"
-      />
+      {data && options && (
+        <Doughnut
+          id="budget-radial-chart"
+          data={data}
+          options={options}
+          className="z-10"
+        />
+      )}
       <div
         id="budget-info-summary"
         className="absolute text-white text-xl font-bold"

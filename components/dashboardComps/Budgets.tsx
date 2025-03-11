@@ -1,17 +1,9 @@
 "use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
 import { FaHospital, FaPlus, FaTheaterMasks } from "react-icons/fa";
 import { IoFastFood } from "react-icons/io5";
-// import BudgetRadialChart from "./budgetComps/BudgetRadialChart";
-const BudgetRadialChart = dynamic(
-  () => import("./budgetComps/BudgetRadialChart"),
-  {
-    loading: () => <p>Loading...</p>,
-    ssr: false,
-  }
-);
+import BudgetRadialChart from "./budgetComps/BudgetRadialChart";
 
 const Budgets = () => {
   return (
